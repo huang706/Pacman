@@ -12,10 +12,7 @@ from src.managers.resource_manager import ResourceManager
 class Enemy(GameObject):
     def __init__(self,grid):
         # 随机位置
-        position = (
-            random.randint(0, SCREEN_WIDTH - ENEMY_SIZE[0]),  # 考虑水果大小
-            random.randint(0, SCREEN_HEIGHT - ENEMY_SIZE[1])
-        )
+        position = grid.get_random_floor_position()
 
         # 初始化参数
         super().__init__(position, ENEMY_SIZE,grid)

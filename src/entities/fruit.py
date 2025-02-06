@@ -8,10 +8,7 @@ from src.managers.resource_manager import ResourceManager
 class Fruit(GameObject):
     def __init__(self,grid):
         # 随机位置
-        position = (
-            random.randint(0, SCREEN_WIDTH - FRUIT_SIZE[0]),  # 考虑水果大小
-            random.randint(0, SCREEN_HEIGHT - FRUIT_SIZE[1])
-        )
+        position = grid.get_random_floor_position()
 
         super().__init__(position, FRUIT_SIZE,grid)
 

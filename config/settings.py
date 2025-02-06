@@ -14,14 +14,14 @@ BGM_VOLUME = 0.5
 FPS = 60
 
 # 玩家参数
-PLAYER_SIZE = (18, 18)  # 玩家大小
+PLAYER_SIZE = (15, 15)  # 玩家大小
 PLAYER_SPEED = 4  # 玩家速度
 PLAYER_LIVES = 3  # 玩家生命条数
 PLAYER_INVINCIBLE_TIME = 3000  # 玩家无敌时间
 
 # 敌人参数
-ENEMY_SIZE = (18, 18)  # 敌人大小
-ENEMY_SPEED = 3  # 敌人速度
+ENEMY_SIZE = (15, 15)  # 敌人大小
+ENEMY_SPEED = 2  # 敌人速度
 ENEMY_NUM = 10  # 敌人数量
 ENEMY_CHANGE_DIRECTION_INTERVAL=5000
 
