@@ -7,17 +7,29 @@ from config.constants import IMAGE_PATH, Direction, ENEMY_DIRECTION_EVENT
 import random
 
 from src.managers.resource_manager import ResourceManager
+from src.utils.vector2D import Vector2D
 
 
 class Enemy(GameObject):
-    def __init__(self,grid):
-        # 随机位置
+    def __init__(self, grid):
+        # 在可通行位置随机生成
         position = grid.get_random_floor_position()
 
         # 初始化参数
-        super().__init__(position, ENEMY_SIZE,grid)
+        super().__init__(position, ENEMY_SIZE, grid)
         self.speed = ENEMY_SPEED
-        self.direction = Direction.random_direction()
+
+        # 确保初始方向是可行的
+        available_directions = []
+        for direction in Direction._all_direction.values():
+            if direction != Direction._all_direction['NONE']:
+                test_position = Vector2D(*position) + direction * self.speed
+                if self.can_move_to(test_position):
+                    available_directions.append(direction)
+
+        # 从可用方向中随机选择一个
+        self.direction = random.choice(available_directions) if available_directions else Direction._all_direction[
+            'NONE']
 
         # 加载敌人图像
         enemy_index = random.randint(1, 4)
@@ -26,16 +38,3 @@ class Enemy(GameObject):
 
         # 设置方向改变计时器
         pygame.time.set_timer(ENEMY_DIRECTION_EVENT, ENEMY_CHANGE_DIRECTION_INTERVAL)
-
-    def update(self):
-        if self.image and self.rect:
-            unavailable_directions = []
-            for value in Direction._all_direction.values():
-                new_position = self.position + value * self.speed
-                if is_beyond_boundary(new_position.to_tuple(), self):
-                    unavailable_directions.append(value)
-            if self.direction in unavailable_directions:
-                # 从可用方向中随机选择一个新方向
-                self.direction = Direction.random_new_direction(unavailable_directions)
-            self.position += self.direction * self.speed
-            self.rect.topleft = self.position.to_tuple()
