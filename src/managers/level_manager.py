@@ -19,13 +19,13 @@ class LevelManager:
         super().__init__()
         self.current_level: int = 1
         self.grid = None
-        self.screen = None
+        self.background = None
 
     def get_grid(self) -> 'Grid':
         return self.grid
 
-    def get_screen(self) -> pygame.Surface:
-        return self.screen
+    def get_background(self) -> pygame.Surface:
+        return self.background
 
     def load_level(self, level_number: int) -> None:
         with open(f'config/levels/level{level_number}.json', 'r') as f:
@@ -43,21 +43,21 @@ class LevelManager:
         # 创建窗口screen
         width = len(map_data[0]) * cell_size
         height = len(map_data) * cell_size
-        self.screen=pygame.Surface((width,height))
+        self.background = pygame.Surface((width, height))
 
-        #设置墙壁
+        # 设置墙壁
         for i, row in enumerate(map_data):
             for j, col in enumerate(row):
                 if map_data[i][j] == 'W':
                     self.grid.set_wall(j, i)
 
-        #加载背景资源并绘图
+        # 加载背景资源并绘图
         wall = ResourceManager().load_image(f"{IMAGE_PATH}Wall.png")
         floor = ResourceManager().load_image(f"{IMAGE_PATH}Floor.png")
         for i in range(len(map_data[0])):
             for j in range(len(map_data)):
                 position = self.grid.grid_to_world((i, j))
                 if self.grid.is_wall(i, j):
-                    self.screen.blit(wall, position.to_tuple())
+                    self.background.blit(wall, position.to_tuple())
                 else:
-                    self.screen.blit(floor, position.to_tuple())
+                    self.background.blit(floor, position.to_tuple())

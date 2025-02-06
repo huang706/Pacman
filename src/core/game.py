@@ -39,12 +39,11 @@ class Game:
 
     def _init_game(self):
         # 创建游戏窗口
-        pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        self.screen=pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption("Pacman")
 
         # 加载关卡和设置窗口
         self.level_manager.load_level(1)
-        self.screen = self.level_manager.get_screen()
         self.grid = self.level_manager.get_grid()
 
         # 设置游戏图标
@@ -133,6 +132,7 @@ class Game:
 
     def _handle_player_input(self):
         """处理玩家输入"""
+        self.player.direction = Direction._all_direction['NONE']  # 重置方向
         for key, is_pressed in self.key_pressed.items():
             if is_pressed:
                 self.player.direction += self.key_to_direction[key]
@@ -154,7 +154,8 @@ class Game:
     def _render(self):
         """渲染游戏画面"""
         # 绘制地图（如果需要）
-        self.screen.blit(self.level_manager.get_screen(), (0, 0))
+        self.screen.fill((0,0,0))
+        self.screen.blit(self.level_manager.get_background(), (0, 0))
 
         # 绘制游戏对象
         self.player.draw(self.screen)
