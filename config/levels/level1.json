@@ -1,0 +1,14 @@
+{
+  "map_data": [
+    "WWWWWWWWWWWWWWWWWWWW",
+    "W....W...W....W....W",
+    "W.WW.WWW.W.WW.W.WW.W",
+    "W.WW.WWW.W.WW.W.WW.W",
+    "W....................W",
+    "W.WW.W.WWWWWW.W.WW.W",
+    "W....W....W....W...W",
+    "WWWW.WWWW.W.WWWW.WWW"
+  ],
+
+  "map_cell_size": 32
+}
