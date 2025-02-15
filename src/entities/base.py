@@ -9,7 +9,7 @@ from src.utils.vector2D import Vector2D
 class GameObject(Sprite):
     def __init__(self, position: Tuple[int, int], size: Tuple[int, int], grid: 'Grid'):
         super().__init__()
-        self.position = Vector2D(*position)
+        self.position = Vector2D(*position)  # 这个position现在就表示中心位置
         self.size = size
         self.direction=Direction.all_direction['NONE']
         self.image: Optional[pygame.Surface] = None
@@ -17,13 +17,14 @@ class GameObject(Sprite):
         self.grid = grid
         self.speed = 0
 
-    def load_image(self, surface: pygame.Surface):
+    #初始化实体图像
+    def init_image(self, surface: pygame.Surface):
         self.image = pygame.transform.scale(surface, self.size)
         self.rect = pygame.Surface.get_rect(self.image)
-        self.rect.topleft = self.position.to_tuple()
+        self.rect.center = self.position.to_tuple()
 
     def can_move_to(self,next_pos:'Vector2D'):
-        # 计算角落所处的网格位置
+        # 计算四个角的位置
         corners = {
             'TOPLEFT': (next_pos.x-self.size[0]/2,next_pos.y-self.size[1]/2),
             'TOPRIGHT': (next_pos.x+self.size[0]/2,next_pos.y-self.size[1]/2),

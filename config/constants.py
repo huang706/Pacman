@@ -7,8 +7,7 @@ import pygame
 from src.utils.vector2D import Vector2D
 
 # 自定义事件
-ENEMY_DIRECTION_EVENT = pygame.USEREVENT + 1
-PLAYER_IS_INVINCIBLE_END = pygame.USEREVENT + 2
+PLAYER_IS_INVINCIBLE_END = pygame.USEREVENT + 1
 
 #定义方向
 class Direction(Vector2D):

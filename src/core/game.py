@@ -2,7 +2,7 @@ import pygame
 from config.settings import FPS, FRUIT_NUM, ENEMY_NUM, SCREEN_WIDTH, SCREEN_HEIGHT
 from config.constants import (
     IMAGE_PATH, Direction,
-    ENEMY_DIRECTION_EVENT, PLAYER_IS_INVINCIBLE_END
+    PLAYER_IS_INVINCIBLE_END
 )
 from src.managers.collision_manager import CollisionManager
 from src.core.handlers.collision_handlers import (
@@ -124,9 +124,6 @@ class Game:
             self.key_pressed[event.key] = True
         elif event.type == pygame.KEYUP and event.key in self.key_pressed:
             self.key_pressed[event.key] = False
-        elif event.type == ENEMY_DIRECTION_EVENT:
-            for enemy in self.enemies:
-                enemy.direction = Direction.random_new_direction([enemy.direction])
         elif event.type == PLAYER_IS_INVINCIBLE_END:
             self.player.is_invincible = False
 

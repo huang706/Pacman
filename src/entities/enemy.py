@@ -1,8 +1,6 @@
-import pygame
-
 from src.entities.base import GameObject
-from config.settings import ENEMY_SPEED, SCREEN_WIDTH, SCREEN_HEIGHT, ENEMY_SIZE, ENEMY_CHANGE_DIRECTION_INTERVAL
-from config.constants import IMAGE_PATH, Direction, ENEMY_DIRECTION_EVENT
+from config.settings import ENEMY_SPEED, SCREEN_WIDTH, SCREEN_HEIGHT, ENEMY_SIZE
+from config.constants import IMAGE_PATH, Direction
 import random
 from src.utils.vector2D import Vector2D
 from src.managers.resource_manager import ResourceManager
@@ -21,10 +19,7 @@ class Enemy(GameObject):
         # 加载敌人图像
         enemy_index = random.randint(1, 4)
         image = ResourceManager().load_image(IMAGE_PATH + "ghost" + str(enemy_index) + ".png")
-        self.load_image(image)
-
-        # 设置方向改变计时器
-        pygame.time.set_timer(ENEMY_DIRECTION_EVENT, ENEMY_CHANGE_DIRECTION_INTERVAL)
+        self.init_image(image)
 
     def get_available_directions(self):
         """获取所有可行的方向"""
@@ -65,4 +60,4 @@ class Enemy(GameObject):
                 self.position = next_position
 
             # 更新精灵的位置
-            self.rect.topleft = self.position.to_tuple()
+            self.rect.center = self.position.to_tuple()

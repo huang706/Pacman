@@ -17,4 +17,4 @@ class Player(GameObject):
 
         # 创建图像
         image = ResourceManager().load_image(IMAGE_PATH + 'player.png')
-        self.load_image(image)
+        self.init_image(image)

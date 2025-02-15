@@ -15,4 +15,4 @@ class Fruit(GameObject):
         #随机选取图像并创建
         fruit_type = random.choice(list(FruitType))
         image=ResourceManager().load_image(IMAGE_PATH+fruit_type.value+".png")
-        self.load_image(image)
+        self.init_image(image)

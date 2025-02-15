@@ -51,7 +51,7 @@ class Grid:
         grid_x, grid_y = random.choice(available)
 
         # 转换为世界坐标（居中）
-        world_x = grid_x * self.cell_size
-        world_y = grid_y * self.cell_size
+        world_x = (grid_x+0.5) * self.cell_size
+        world_y = (grid_y+0.5) * self.cell_size
 
         return world_x, world_y
