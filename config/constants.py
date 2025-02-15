@@ -12,7 +12,7 @@ PLAYER_IS_INVINCIBLE_END = pygame.USEREVENT + 2
 
 #定义方向
 class Direction(Vector2D):
-    _all_direction = {
+    all_direction = {
         'UP': Vector2D(0, -1),
         'DOWN': Vector2D(0, 1),
         'LEFT': Vector2D(-1, 0),
@@ -22,11 +22,11 @@ class Direction(Vector2D):
 
     @classmethod
     def random_direction(cls) -> 'Vector2D':
-        return random.choice([d for d in cls._all_direction.values() if d != cls._all_direction['NONE']])
+        return random.choice([d for d in cls.all_direction.values() if d != cls.all_direction['NONE']])
 
     @classmethod
     def random_new_direction(cls, origin: List['Vector2D']) -> 'Vector2D':
-        return random.choice([d for d in cls._all_direction.values() if d != cls._all_direction['NONE'] and d not in origin])
+        return random.choice([d for d in cls.all_direction.values() if d != cls.all_direction['NONE'] and d not in origin])
 
 
 # 颜色

@@ -11,7 +11,7 @@ class GameObject(Sprite):
         super().__init__()
         self.position = Vector2D(*position)
         self.size = size
-        self.direction=Direction._all_direction['NONE']
+        self.direction=Direction.all_direction['NONE']
         self.image: Optional[pygame.Surface] = None
         self.rect: Optional[pygame.Rect] = None
         self.grid = grid

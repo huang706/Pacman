@@ -86,10 +86,10 @@ class Game:
 
         # 设置按键方向映射
         self.key_to_direction = {
-            pygame.K_UP: Direction._all_direction['UP'],
-            pygame.K_DOWN: Direction._all_direction['DOWN'],
-            pygame.K_LEFT: Direction._all_direction['LEFT'],
-            pygame.K_RIGHT: Direction._all_direction['RIGHT']
+            pygame.K_UP: Direction.all_direction['UP'],
+            pygame.K_DOWN: Direction.all_direction['DOWN'],
+            pygame.K_LEFT: Direction.all_direction['LEFT'],
+            pygame.K_RIGHT: Direction.all_direction['RIGHT']
         }
 
     def run(self):
@@ -132,7 +132,7 @@ class Game:
 
     def _handle_player_input(self):
         """处理玩家输入"""
-        self.player.direction = Direction._all_direction['NONE']  # 重置方向
+        self.player.direction = Direction.all_direction['NONE']  # 重置方向
         for key, is_pressed in self.key_pressed.items():
             if is_pressed:
                 self.player.direction += self.key_to_direction[key]
